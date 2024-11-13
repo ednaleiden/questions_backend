@@ -1,5 +1,6 @@
-package model;
+package com.developer.questions.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,8 +11,8 @@ import java.util.List;
 
 @Entity
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class Encuesta {
 
     @Id
@@ -20,7 +21,7 @@ public class Encuesta {
 
     private String titulo;
 
-    //encuesta tendra muchas preguntas
-    @OneToMany(mappedBy = "encuesta", cascade = CascadeType.ALL) //si se elimina la encuenta se elimina las preguntas
+    @OneToMany(mappedBy = "encuesta",cascade = CascadeType.ALL)
+    @JsonIgnore //Esta anotacion evita que se serialice este campo en JSON
     private List<Pregunta> preguntas = new ArrayList<>();
 }

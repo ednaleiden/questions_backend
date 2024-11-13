@@ -1,5 +1,6 @@
-package model;
+package com.developer.questions.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,8 +11,8 @@ import java.util.List;
 
 @Entity
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class Pregunta {
 
     @Id
@@ -22,9 +23,9 @@ public class Pregunta {
 
     @ManyToOne
     @JoinColumn(name = "encuesta_id")
+    @JsonBackReference
     private Encuesta encuesta;
 
-
-    @OneToMany(mappedBy = "pregunta", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "pregunta",cascade = CascadeType.ALL)
     private List<Respuesta> respuestas = new ArrayList<>();
 }

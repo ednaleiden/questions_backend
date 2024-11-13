@@ -1,5 +1,6 @@
-package model;
+package com.developer.questions.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,8 +8,8 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class Respuesta {
 
     @Id
@@ -19,6 +20,6 @@ public class Respuesta {
 
     @ManyToOne
     @JoinColumn(name = "pregunta_id")
+    @JsonBackReference
     private Pregunta pregunta;
-
 }
